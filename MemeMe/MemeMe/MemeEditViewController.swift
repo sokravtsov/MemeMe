@@ -7,9 +7,14 @@
 //
 
 import UIKit
-import Foundation
+
+protocol MemeEditViewControllerDelegate: class {
+    func dismissMemeEditViewController()
+}
 
 class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate,  PickFontProtocol {
+    
+    weak var delegate: MemeEditViewControllerDelegate?
     
     @IBOutlet weak var memeView: UIView!
     @IBOutlet weak var imagePickView: UIImageView!
@@ -20,18 +25,14 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var fontSelectorButton: UIBarButtonItem!
     
     var globalFontValue = "Impact"
     var priorKeyboardHeight: CGFloat = 0.0
     
     
-    // canecel button, go back to original view
-    @IBAction func cancelAndReturnToOriginalView(sender: AnyObject) {
-        setToInitialState()
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+    // canecel Meme
+    @IBAction func cancelMeme(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -60,6 +61,9 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
                 print("== \(names)")
             }
         }
+        
+        UIApplication.sharedApplication().statusBarHidden = true
+
     }
     
     // hide the status bar
@@ -89,11 +93,12 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     // dimiss image picker view when user select a still image
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // display the original image to UIImageView box
-        let userSelectedImageVal = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imagePickView.image = userSelectedImageVal
-        imagePickView.contentMode = .ScaleAspectFit
-        shareButton.enabled = true
-        dismissViewControllerAnimated(true, completion: nil)
+        if let userSelectedImageVal = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePickView.image = userSelectedImageVal
+            //imagePickView.contentMode = .ScaleAspectFit
+            shareButton.enabled = true
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     // dimiss image picker view when user hit cancel
@@ -124,9 +129,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         memeView.backgroundColor = UIColor.blackColor()
         imagePickView.image = nil
         globalFontValue = "Impact"
+        
         // Initial Font will always be impact
-        _ = setTextField(topTextField, placeHolderText: "TOP")
-        _ = setTextField(bottomTextField, placeHolderText: "BOTTOM")
+        setTextField(topTextField, placeHolderText: "TOP")
+        setTextField(bottomTextField, placeHolderText: "BOTTOM")
     }
     
     
@@ -204,10 +210,9 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     // MARK: Share MemeMe
-    @IBAction func share(sender: AnyObject) {
+    @IBAction func share(sender: UIBarButtonItem) {
         let image = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        presentViewController(controller, animated: true, completion: nil)
         controller.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItems: [AnyObject]?, error: NSError? ) in
             // return if cancelled
@@ -215,30 +220,38 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
                 return
             } else {
                 self.save(image)
+                self.delegate?.dismissMemeEditViewController()
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
+        
+        presentViewController(controller, animated: true, completion: nil)
+
     }
     
     // create Meme object
     func save(memedImage: UIImage) {
-        //let meme = Meme(text: textField.text!, image: imageView.image, memedImage: memedImage)
-        _ = Meme(topText: topTextField.text, bottomText: bottomTextField.text, image: imagePickView.image!, memedImage: memedImage)
+        
+        if let topText = topTextField.text, bottomText = bottomTextField.text, image = imagePickView.image {
+            let meme = Meme(topText: topText, bottomText: bottomText, image: image, memedImage: memedImage)
+            
+            // Add meme to memes array in the AppDelegate
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+        }
     }
     
     func generateMemedImage() -> UIImage {
         // hide toolbar and navbar
-        navBar.hidden = true
+        navigationController?.navigationBarHidden = true
         toolBar.hidden = true
         
         // render view to an image
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         // show toolbar and navbar
-        navBar.hidden = false
+        navigationController?.navigationBarHidden = false
         toolBar.hidden = false
         
         return memedImage
@@ -248,8 +261,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     func updateFont(newFontValue: String) {
         globalFontValue = newFontValue
         print("THE FOLLOWING FONT WAS SELECTED AND NOW UPDATE \(globalFontValue)")
-        _ = setTextField(topTextField, placeHolderText: topTextField.text!)
-        _ = setTextField(bottomTextField, placeHolderText: bottomTextField.text!)
+        setTextField(topTextField, placeHolderText: topTextField.text!)
+        setTextField(bottomTextField, placeHolderText: bottomTextField.text!)
 
     }
 }
