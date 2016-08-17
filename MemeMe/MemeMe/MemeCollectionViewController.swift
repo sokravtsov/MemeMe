@@ -13,9 +13,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     
     @IBOutlet weak var flowLayout : UICollectionViewFlowLayout!
     
-    //var memes: [Meme]!
     var memes = [Meme]()
-
 
     let cellIdentifier = "memeCollectionViewCell"
     
@@ -24,7 +22,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.allowsMultipleSelection = false
+        //collectionView.allowsMultipleSelection = false
         
         configureFlowLayout(3.0)
     }

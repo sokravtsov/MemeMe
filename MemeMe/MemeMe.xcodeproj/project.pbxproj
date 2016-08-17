@@ -59,9 +59,7 @@
 				8235554A1D64F369002AA45B /* MemeCollectionViewController.swift */,
 				8235554D1D64F44B002AA45B /* MemeTableViewController.swift */,
 				823555531D64F654002AA45B /* MemeDetailViewController.swift */,
-				8235554F1D64F604002AA45B /* MemeTableViewCell.swift */,
-				823555511D64F622002AA45B /* MemeCollectionViewCell.swift */,
-				8235554C1D64F438002AA45B /* New Group */,
+				8235554C1D64F438002AA45B /* View Cell */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -74,11 +72,13 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		8235554C1D64F438002AA45B /* New Group */ = {
+		8235554C1D64F438002AA45B /* View Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8235554F1D64F604002AA45B /* MemeTableViewCell.swift */,
+				823555511D64F622002AA45B /* MemeCollectionViewCell.swift */,
 			);
-			name = "New Group";
+			name = "View Cell";
 			sourceTree = "<group>";
 		};
 		824139B21D2E6D710025DBEC = {
