@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="-580" y="-954"/>
         </scene>
-        <!--Meme Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="1dC-hP-8dY">
             <objects>
                 <viewController id="J4B-Ph-NG1" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,7 +99,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lG4-jI-jaw">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="lG4-jI-jaw" userLabel="Sent Memes">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bEd-Nt-WIX">
                             <connections>
                                 <segue destination="Rt6-qb-maF" kind="presentation" identifier="segueToMemeEdit" id="Cro-ub-g37"/>
@@ -272,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="-586" y="-48"/>
         </scene>
-        <!--Meme Table View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="YD0-Iu-oLd">
             <objects>
                 <viewController id="nU6-do-i5Y" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -343,7 +343,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iPv-ux-OUd">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="iPv-ux-OUd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvF-M5-ruf">
                             <connections>
                                 <segue destination="Rt6-qb-maF" kind="presentation" identifier="segueToMemeEdit" id="Pfj-Wu-9Xn"/>
@@ -412,7 +412,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Vg-WM-c3r"/>
-        <segue reference="Cro-ub-g37"/>
+        <segue reference="Pfj-Wu-9Xn"/>
+        <segue reference="Iaj-HP-uDC"/>
     </inferredMetricsTieBreakers>
 </document>
