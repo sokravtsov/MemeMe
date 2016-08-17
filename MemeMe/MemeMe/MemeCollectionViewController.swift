@@ -61,9 +61,8 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     func configureFlowLayout(space: CGFloat) {
         let width = (view.frame.size.width - (2 * space)) / 3.0
         let height = (view.frame.size.height - (2 * space)) / 3.0
-        
-        flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
+        flowLayout.minimumInteritemSpacing = space
         flowLayout.itemSize = CGSize(width: width, height: height)
     }
     
