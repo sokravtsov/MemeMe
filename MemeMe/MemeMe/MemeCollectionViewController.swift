@@ -23,7 +23,6 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         super.viewDidLoad()
         
         //collectionView.allowsMultipleSelection = false
-        
         configureFlowLayout(3.0)
     }
     
@@ -68,6 +67,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         flowLayout.minimumInteritemSpacing = space
         flowLayout.itemSize = CGSize(width: width, height: height)
     }
+    
     
     private struct StoryboardSegue {
         static let kSegueToMemeEditor = "segueToMemeEdit"
