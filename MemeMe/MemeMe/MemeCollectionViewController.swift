@@ -29,7 +29,10 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        // tab bar after detailVC
+        tabBarController?.tabBar.hidden = false
+
         UIApplication.sharedApplication().statusBarHidden = false
         
         memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
