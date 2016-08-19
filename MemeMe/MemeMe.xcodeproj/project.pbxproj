@@ -59,7 +59,6 @@
 				8235554A1D64F369002AA45B /* MemeCollectionViewController.swift */,
 				8235554D1D64F44B002AA45B /* MemeTableViewController.swift */,
 				823555531D64F654002AA45B /* MemeDetailViewController.swift */,
-				8235554C1D64F438002AA45B /* View Cell */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -104,8 +103,9 @@
 				824139BE1D2E6D710025DBEC /* AppDelegate.swift */,
 				823555491D64F33B002AA45B /* Model */,
 				823555481D64F31A002AA45B /* View Controller */,
-				824139C21D2E6D710025DBEC /* Main.storyboard */,
+				8235554C1D64F438002AA45B /* View Cell */,
 				824139C51D2E6D710025DBEC /* Assets.xcassets */,
+				824139C21D2E6D710025DBEC /* Main.storyboard */,
 				824139C71D2E6D710025DBEC /* LaunchScreen.storyboard */,
 				824139CA1D2E6D710025DBEC /* Info.plist */,
 			);

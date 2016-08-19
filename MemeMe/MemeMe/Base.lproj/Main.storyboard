@@ -286,7 +286,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RYg-RA-BDO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RYg-RA-BDO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -304,7 +304,7 @@
                                                         <constraint firstAttribute="height" constant="125" id="wjW-xz-jhj"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj8-8c-cWE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj8-8c-cWE">
                                                     <rect key="frame" x="133" y="51" width="459" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="0iT-ht-6u4"/>
@@ -316,10 +316,12 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nj8-8c-cWE" firstAttribute="centerY" secondItem="flt-o9-mqH" secondAttribute="centerY" id="4rn-yn-Ts1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nj8-8c-cWE" secondAttribute="bottom" constant="44" id="6hY-OQ-1dT"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="flt-o9-mqH" secondAttribute="bottom" constant="-8" id="GDO-Ww-wVj"/>
-                                                <constraint firstItem="nj8-8c-cWE" firstAttribute="leading" secondItem="flt-o9-mqH" secondAttribute="trailing" constant="8" id="c0D-Mh-DiX"/>
+                                                <constraint firstItem="nj8-8c-cWE" firstAttribute="top" secondItem="jBc-sS-tjX" secondAttribute="topMargin" constant="43" id="NEj-0a-7yE"/>
                                                 <constraint firstItem="flt-o9-mqH" firstAttribute="leading" secondItem="jBc-sS-tjX" secondAttribute="leadingMargin" constant="-8" id="jGr-ft-Rb9"/>
+                                                <constraint firstItem="nj8-8c-cWE" firstAttribute="leading" secondItem="flt-o9-mqH" secondAttribute="trailing" constant="8" id="pQj-O8-Ich"/>
+                                                <constraint firstItem="nj8-8c-cWE" firstAttribute="trailing" secondItem="jBc-sS-tjX" secondAttribute="trailingMargin" id="wXV-O7-gbB"/>
                                                 <constraint firstItem="flt-o9-mqH" firstAttribute="top" secondItem="jBc-sS-tjX" secondAttribute="topMargin" constant="-9" id="xzN-pn-8uS"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -337,6 +339,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RYg-RA-BDO" firstAttribute="top" secondItem="jsv-yW-FpI" secondAttribute="top" id="32u-ll-SKg"/>
+                            <constraint firstItem="RYg-RA-BDO" firstAttribute="leading" secondItem="jsv-yW-FpI" secondAttribute="leadingMargin" constant="-20" id="6UI-hg-CyI"/>
+                            <constraint firstAttribute="bottom" secondItem="RYg-RA-BDO" secondAttribute="bottom" id="XyI-mP-n0H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RYg-RA-BDO" secondAttribute="trailing" constant="-20" id="aet-57-8oQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="iPv-ux-OUd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvF-M5-ruf">
@@ -387,10 +395,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="LPg-SS-LOs" secondAttribute="trailing" id="JdF-Ly-8hE"/>
-                            <constraint firstItem="LPg-SS-LOs" firstAttribute="leading" secondItem="O3j-BQ-MiV" secondAttribute="leading" id="TBS-MZ-UIj"/>
-                            <constraint firstItem="Abb-b5-Eg1" firstAttribute="top" secondItem="LPg-SS-LOs" secondAttribute="bottom" id="URd-A7-TIr"/>
-                            <constraint firstItem="LPg-SS-LOs" firstAttribute="top" secondItem="Dvl-4N-Zwi" secondAttribute="bottom" id="jpy-bi-6r3"/>
+                            <constraint firstItem="LPg-SS-LOs" firstAttribute="bottom" secondItem="Abb-b5-Eg1" secondAttribute="top" id="1pQ-jk-9qT"/>
+                            <constraint firstItem="LPg-SS-LOs" firstAttribute="leading" secondItem="O3j-BQ-MiV" secondAttribute="leading" id="7wM-dw-ETQ"/>
+                            <constraint firstItem="LPg-SS-LOs" firstAttribute="centerX" secondItem="O3j-BQ-MiV" secondAttribute="centerX" id="D0s-E1-bO3"/>
+                            <constraint firstItem="LPg-SS-LOs" firstAttribute="top" secondItem="Dvl-4N-Zwi" secondAttribute="bottom" id="aFV-V2-mbh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -407,7 +415,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cro-ub-g37"/>
-        <segue reference="2Vg-WM-c3r"/>
+        <segue reference="Iaj-HP-uDC"/>
+        <segue reference="Pfj-Wu-9Xn"/>
     </inferredMetricsTieBreakers>
 </document>

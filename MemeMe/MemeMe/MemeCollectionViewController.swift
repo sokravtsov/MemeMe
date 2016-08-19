@@ -23,7 +23,13 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         super.viewDidLoad()
         
         //collectionView.allowsMultipleSelection = false
-        configureFlowLayout(3.0)
+        //configureFlowLayout(3.0)
+        let space: CGFloat = 3.0
+        let width = (view.frame.size.width - (2 * space)) / 3.0
+        let height = (view.frame.size.height - (2 * space)) / 3.0
+        flowLayout.minimumLineSpacing = space
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.itemSize = CGSize(width: width, height: height)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,27 +66,25 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
-    func configureFlowLayout(space: CGFloat) {
+    /*func configureFlowLayout(space: CGFloat) {
         let width = (view.frame.size.width - (2 * space)) / 3.0
         let height = (view.frame.size.height - (2 * space)) / 3.0
         flowLayout.minimumLineSpacing = space
         flowLayout.minimumInteritemSpacing = space
         flowLayout.itemSize = CGSize(width: width, height: height)
-    }
-    
-    
-    private struct StoryboardSegue {
-        static let kSegueToMemeEditor = "segueToMemeEdit"
-        static let kSegueToMemeDetail = "segueToMemeDetail"
-    }
+    }*/
+   
+    // Sugues identifiers
+    let SegueToMemeEditor = "segueToMemeEdit"
+    let SegueToMemeDetail = "segueToMemeDetail"
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == StoryboardSegue.kSegueToMemeEditor {
+        if segue.identifier == SegueToMemeEditor {
             if let destination = segue.destinationViewController as? UINavigationController, memeEditVC = destination.topViewController as? MemeEditViewController {
                 memeEditVC.delegate = self
             }
-        } else if segue.identifier == StoryboardSegue.kSegueToMemeDetail {
+        } else if segue.identifier == SegueToMemeDetail {
             if let destination = segue.destinationViewController as? MemeDetailViewController, arrayOfIndexPaths = collectionView.indexPathsForSelectedItems(), indexPath = arrayOfIndexPaths.first {
                 let selectedCell = memes[indexPath.item]
                 destination.meme = selectedCell

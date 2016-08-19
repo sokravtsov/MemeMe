@@ -95,7 +95,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         // display the original image to UIImageView box
         if let userSelectedImageVal = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickView.image = userSelectedImageVal
-            //imagePickView.contentMode = .ScaleAspectFit
+            imagePickView.contentMode = .ScaleAspectFit
             shareButton.enabled = true
             dismissViewControllerAnimated(true, completion: nil)
         }
@@ -126,7 +126,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     // MARK: Initial state
     func setToInitialState() {
         shareButton.enabled = false
-        memeView.backgroundColor = UIColor.blackColor()
+        memeView.backgroundColor = UIColor.darkGrayColor()
         imagePickView.image = nil
         globalFontValue = "Impact"
         

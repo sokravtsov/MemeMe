@@ -41,7 +41,7 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MemeTableViewCell
         let meme = memes[indexPath.row]
-        cell.memeLabel.text = "\(meme.topText!) \(meme.bottomText!)"
+        cell.memeLabel.text = "\(meme.topText!)...\(meme.bottomText!)"
         cell.memeImageView.image = meme.memedImage
         
         return cell
@@ -51,6 +51,7 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    // MARK: Delete Meme
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let button = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) in
             (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(indexPath.row)
@@ -60,24 +61,25 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         return [button]
     }
     
+    
     func dismissMemeEditViewController() {
         dismissViewControllerAnimated(true) {
             self.tableView.reloadData()
         }
     }
     
-    private struct StoryboardSegue {
-        static let kSegueToMemeEdit = "segueToMemeEdit"
-        static let kSegueToMemeDetail = "segueToMemeDetail"
-    }
+    // MARK: Sugue
+    let SegueToMemeEdit = "segueToMemeEdit"
+    let SegueToMemeDetail = "segueToMemeDetail"
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == StoryboardSegue.kSegueToMemeEdit {
+        if segue.identifier == SegueToMemeEdit {
             if let destination = segue.destinationViewController as? UINavigationController, memeEditVC = destination.topViewController as? MemeEditViewController {
                 memeEditVC.delegate = self
             }
-        } else if segue.identifier == StoryboardSegue.kSegueToMemeDetail {
+        } else if segue.identifier == SegueToMemeDetail {
             if let destination = segue.destinationViewController as? MemeDetailViewController, indexPath = tableView.indexPathForSelectedRow {
                 let selectedCell = memes[indexPath.row]
                 destination.meme = selectedCell
